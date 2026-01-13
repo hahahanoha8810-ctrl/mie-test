@@ -2,7 +2,6 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mie Test Site</title>
 </head>
 <body>
@@ -11,8 +10,9 @@
 
   <h2>PDFリンク</h2>
 
+  <!-- キャッシュ回避して viewer.html を開く -->
   <p>
-    <a href="viewer.html" target="_blank" rel="noopener">
+    <a href="#" onclick="openViewer(); return false;">
       Safari対応：PDFの17ページを開く（PDF.js）
     </a>
   </p>
@@ -22,5 +22,13 @@
       比較用：Safariで効かない版（#page=17）
     </a>
   </p>
+
+  <script>
+    function openViewer() {
+      const v = Date.now(); // 毎回違う値 → キャッシュ無効化
+      window.open(`viewer.html?v=${v}`, "_blank");
+    }
+  </script>
+
 </body>
 </html>
